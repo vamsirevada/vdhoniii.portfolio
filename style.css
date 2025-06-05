@@ -19,6 +19,7 @@ nav {
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 8px 0 #0002;
+  backdrop-filter: blur(8px);
 }
 .nav-content {
   display: flex;
@@ -45,7 +46,8 @@ nav a {
   font-weight: 500;
   transition: color 0.2s;
 }
-nav a:hover {
+nav a:hover,
+nav a.active {
   color: #60a5fa;
 }
 
@@ -64,6 +66,7 @@ nav a:hover {
   text-align: center;
   padding-top: 96px;
   padding-bottom: 48px;
+  position: relative;
 }
 .hero-content h1 {
   font-size: 2.8rem;
@@ -89,6 +92,7 @@ nav a:hover {
   padding: 0.4em 1.2em;
   margin-bottom: 1.2em;
   font-size: 1rem;
+  animation: float 3s ease-in-out infinite;
 }
 .hero-buttons {
   display: flex;
@@ -105,7 +109,7 @@ nav a:hover {
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 .btn.primary {
   background: #2563eb;
@@ -114,6 +118,8 @@ nav a:hover {
 }
 .btn.primary:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #2563eb55;
 }
 .btn.secondary {
   background: #23242a;
@@ -123,10 +129,15 @@ nav a:hover {
 .btn.secondary:hover {
   background: #181a20;
   color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #60a5fa33;
 }
 .btn.small {
   font-size: 0.95rem;
   padding: 0.5em 1.2em;
+}
+.btn.small:hover {
+   transform: translateY(-1px);
 }
 .tech-stack {
   display: flex;
@@ -143,6 +154,10 @@ nav a:hover {
   border-radius: 12px;
   padding: 6px;
   box-shadow: 0 2px 8px #0002;
+  transition: transform 0.2s ease-in-out;
+}
+.tech-stack img:hover {
+  transform: scale(1.1);
 }
 
 .summary {
@@ -175,6 +190,11 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #0005;
 }
 .project-card h3 {
   color: #60a5fa;
@@ -233,6 +253,7 @@ nav a:hover {
   background: linear-gradient(90deg, #2563eb 60%, #60a5fa 100%);
   height: 100%;
   border-radius: 8px;
+  transition: width 1s ease-out;
 }
 
 .certifications-list {
@@ -251,6 +272,11 @@ nav a:hover {
   max-width: 320px;
   color: #f3f4f6;
   text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.cert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #0005;
 }
 .cert-card h3 {
   color: #60a5fa;
@@ -312,6 +338,11 @@ nav a:hover {
   color: #f3f4f6;
   text-align: center;
   font-style: italic;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #0005;
 }
 .testimonial .author {
   display: block;
@@ -368,6 +399,24 @@ footer {
   padding: 2em 0 1em 0;
   margin-top: 2em;
   font-size: 1em;
+}
+
+/* Fade-in on scroll styles */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 /* Responsive Styles */
